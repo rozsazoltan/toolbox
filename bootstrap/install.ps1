@@ -89,7 +89,7 @@ Invoke-Expression (Invoke-RestMethod "$baseUrl/mise/startup.ps1")
 
 Write-Host "[INFO] Installing Toolbox CLI..." -ForegroundColor Cyan
 
-& $mise exec -- npm install -g `
+& $mise exec -- pnpm add --global `
   "github:rozsazoltan/toolbox#master"
 
 if ($LASTEXITCODE -ne 0) {

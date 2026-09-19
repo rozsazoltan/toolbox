@@ -40,3 +40,10 @@ foreach ($line in $tools) {
     & mise use --global "$name@$version"
   }
 }
+
+# https://mise.jdx.dev/dev-tools/backends/npm/#choosing-an-installer
+& mise settings set npm.package_manager=pnpm
+
+if ($LASTEXITCODE -ne 0) {
+  throw "Unable to configure pnpm as mise npm package manager."
+}

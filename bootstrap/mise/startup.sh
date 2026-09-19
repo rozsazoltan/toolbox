@@ -24,3 +24,6 @@ while IFS='|' read -r type name version; do
   [ "$type" = "mise" ] || continue
   mise use --global "$name@$version"
 done
+
+# https://mise.jdx.dev/dev-tools/backends/npm/#choosing-an-installer
+mise settings set npm.package_manager=pnpm

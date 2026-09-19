@@ -64,7 +64,7 @@ curl -fsSL "$BASE_URL/bin/startup.sh" | sh
 curl -fsSL "$BASE_URL/mise/startup.sh" | sh
 
 echo "[INFO] Installing Toolbox CLI..."
-"$MISE" exec -- npm install -g "github:rozsazoltan/toolbox#master"
+"$MISE" exec -- pnpm add --global "github:rozsazoltan/toolbox#master"
 
 echo "[OK] Bootstrap complete."
 echo "[INFO] Open a new shell to load environment."
