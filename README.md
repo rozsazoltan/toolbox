@@ -15,12 +15,31 @@ Repository focuses on reusable scripts that remove repetitive setup and maintena
 
 ## Bootstrap
 
+Bootstrap prepares base environment required by Toolbox.
+
+It will:
+
+- install [`bin`](https://github.com/marcosnils/bin)
+- install [`mise`](https://github.com/jdx/mise)
+- configure persistent `PATH` entries
+- configure `mise` shell activation
+- install standalone tools managed by `bin`
+- install global runtimes and packages managed by `mise`
+
+Installed tools and versions are defined in [`bootstrap/tools.conf`](bootstrap/tools.conf). Same configuration is used by PowerShell and shell bootstrap scripts.
+
+Most Toolbox functionality will be provided through an interactive PHP CLI. PHP is therefore part of base bootstrap environment rather than optional development dependency.
+
+PHP is managed through [`verzly/mise-php`](https://github.com/verzly/mise-php). Windows uses standard binary installation. Linux and macOS use prebuilt static PHP to avoid source compilation and keep bootstrap fast.
+
 ### Linux and macOS
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/rozsazoltan/toolbox/master/bootstrap/install.sh | sh
 ```
 
 ### Windows
+
 ```powershell
 irm https://raw.githubusercontent.com/rozsazoltan/toolbox/master/bootstrap/install.ps1 | iex
 ```
