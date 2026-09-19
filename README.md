@@ -13,6 +13,18 @@ Repository focuses on reusable scripts that remove repetitive setup and maintena
 >
 > No guarantee is made that these scripts will work correctly in your environment or remain compatible with future system and tool changes.
 
+## Bootstrap
+
+### Linux and macOS
+```sh
+curl -fsSL https://raw.githubusercontent.com/rozsazoltan/toolbox/master/bootstrap/install.sh | sh
+```
+
+### Windows
+```powershell
+irm https://raw.githubusercontent.com/rozsazoltan/toolbox/master/bootstrap/install.ps1 | iex
+```
+
 ## Scope
 
 Current focus is scripts and development automation.
