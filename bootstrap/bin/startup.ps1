@@ -1,14 +1,9 @@
 $ErrorActionPreference = "Stop"
 
 $baseUrl = "https://raw.githubusercontent.com/rozsazoltan/toolbox/master/bootstrap"
-$toolsUrl = "$baseUrl/tools.conf"
-
+$tools = (Invoke-RestMethod "$baseUrl/tools.conf") -split "`n"
 $binDir = "D:\program\bin"
 $bin = Join-Path $binDir "bin.exe"
-
-Write-Host "[INFO] Installing binary tools..." -ForegroundColor Cyan
-
-$tools = (Invoke-RestMethod $toolsUrl) -split "`n"
 
 foreach ($line in $tools) {
   $line = $line.Trim()
@@ -25,16 +20,8 @@ foreach ($line in $tools) {
 
   $target = Join-Path $binDir "$name.exe"
 
-  if (Test-Path $target) {
-    Write-Host "[SKIP] $name already installed." -ForegroundColor DarkGray
-    continue
+  if (-not (Test-Path $target)) {
+    Write-Host "[INFO] Installing $name..." -ForegroundColor Cyan
+    & $bin install $source $target
   }
-
-  & $bin install $source $target
-
-  if ($LASTEXITCODE -ne 0) {
-    throw "$name installation failed."
-  }
-
-  Write-Host "[OK]   $name installed." -ForegroundColor Green
 }
